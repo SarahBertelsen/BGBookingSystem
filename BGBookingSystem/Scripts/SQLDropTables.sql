@@ -1,0 +1,10 @@
+DROP TABLE BoardGameBooking;
+DROP TABLE ShelfBoardGameCopy;
+DROP TABLE BoardGameCopyReservation;
+DROP TABLE BoardGameCopy;
+DROP TABLE Booking;
+DROP TABLE Membership;
+DROP TABLE Customer;
+DROP TABLE [Table];
+DROP TABLE Shelf;
+DROP TABLE BoardGame;
