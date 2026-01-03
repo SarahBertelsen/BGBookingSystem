@@ -42,6 +42,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -301,7 +302,6 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 
 		searchClicked();
 	}
-
 	
 	/**
 	 * Used when search button is clicked to update the list of found games.
@@ -348,14 +348,7 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 		Level level = getSelectedLevel();
 		Category category = getSelectedCategory();
 		LocalDateTime date = bookingCtrl.getCurrentBooking().getDate();
-
-		BoardGameCopyDB bgCopyDb = new BoardGameCopyDB();
-		TableDB tableDb = new TableDB();
-		CustomerDB cusCb = new CustomerDB();
-		MembershipDAO membershipDao = new MembershipDB();
-		BookingDB bookingDb = new BookingDB(bgCopyDb, tableDb, cusCb, membershipDao);
-		BoardGameCopyCtrl bgCopyCtrl = new BoardGameCopyCtrl(bookingDb, bgCopyDb);
-
+		
 		return bgCopyCtrl.findAvailableBoardGameCopies(date, name, players, level, category, duration);
 	}
 	

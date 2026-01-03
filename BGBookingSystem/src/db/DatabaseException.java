@@ -28,6 +28,8 @@ public class DatabaseException extends RuntimeException{
 	public static final String COULD_NOT_BUILD_OBJECTS = "Could not build the list of objects from the ResultSet";
 	
 	public static final String COULD_NOT_UPDATE_RESERVATION = "Could not update the reservation status of the board game copy.";
+	
+	public static final String COULD_NOT_UPDATE_BUFFER = "Could not update buffer...";
 
 	public DatabaseException(String message) {
 		super(message);
