@@ -99,37 +99,39 @@ public class AvailableBoardGameRunnable implements Runnable {
 	    return success;
 	}
 	
-	public void oldRun() {
-		while (true) {
-			tryBoardGameUpdateOldVersion();
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				break;
-			}
-		}
-	}
-	
-	/**
-	 * Checks if the list of available boardgames has changed, and updates only if they have.
-	 * 
-	 */
-	public void tryBoardGameUpdateOldVersion() {
-		if (frame.isVisible()) {
-			try {
-				List<BoardGameCopy> previousBGCopies = frame.getBgCopies();
-				List<BoardGameCopy> bgCopies = frame.findBoardGameCopies();
-				if (!hasSameCopies(previousBGCopies, bgCopies)) {
-					frame.setBgCopies(bgCopies);
-					frame.updateGameList();
-				}
-			} catch(DatabaseException e) {
-				e.printStackTrace();
-			}
-			
-		}
-	}
+// GAMLE METODER:
+//	
+//	public void oldRun() {
+//		while (true) {
+//			tryBoardGameUpdateOldVersion();
+//			try {
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				Thread.currentThread().interrupt();
+//				break;
+//			}
+//		}
+//	}
+//	
+//	/**
+//	 * Checks if the list of available boardgames has changed, and updates only if they have.
+//	 * 
+//	 */
+//	public void tryBoardGameUpdateOldVersion() {
+//		if (frame.isVisible()) {
+//			try {
+//				List<BoardGameCopy> previousBGCopies = frame.getBgCopies();
+//				List<BoardGameCopy> bgCopies = frame.findBoardGameCopies();
+//				if (!hasSameCopies(previousBGCopies, bgCopies)) {
+//					frame.setBgCopies(bgCopies);
+//					frame.updateGameList();
+//				}
+//			} catch(DatabaseException e) {
+//				e.printStackTrace();
+//			}
+//			
+//		}
+//	}
 		
 
 }

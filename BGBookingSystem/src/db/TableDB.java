@@ -9,7 +9,7 @@ import model.Table;
 
 public class TableDB implements TableDAO {
 
-	private static final String SELECT_BY_TABLE_NO_Q = "SELECT * FROM Table WHERE CustomerId = ?";
+	private static final String SELECT_BY_TABLE_NO_Q = "SELECT * FROM Table WHERE tableNo = ?";
 
 	private PreparedStatement selectByNoPS;
 

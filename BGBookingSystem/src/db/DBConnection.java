@@ -9,18 +9,18 @@ public class DBConnection {
 	private static DBConnection dbConnection;
 
 	
-		private static final String DBNAME = "DMA-CSD-V251_10665994";
-		private static final String SERVERNAME = "hildur.ucn.dk";
-		private static final String PORTNUMBER = "1433";
-		private static final String USERNAME = "DMA-CSD-V251_10665994";
-		private static final String PASSWORD = "Password1!";
+//		private static final String DBNAME = "DMA-CSD-V251_10665994";
+//		private static final String SERVERNAME = "hildur.ucn.dk";
+//		private static final String PORTNUMBER = "1433";
+//		private static final String USERNAME = "DMA-CSD-V251_10665994";
+//		private static final String PASSWORD = "Password1!";
 
-//	// local login
-//	private static final String DBNAME = "2ndSemester";
-//	private static final String SERVERNAME = "BIGLSBIGDEVICE"; // replace with your device name
-//	private static final String PORTNUMBER = "1433";
-//	private static final String USERNAME = "sa";
-//	private static final String PASSWORD = "secret2025*";
+	// local login
+	private static final String DBNAME = "2sem";
+	private static final String SERVERNAME = "localhost"; // replace with your device name
+	private static final String PORTNUMBER = "1433";
+	private static final String USERNAME = "sa";
+	private static final String PASSWORD = "secret2025*";
 
 	// constructor - private because of singleton pattern
 	private DBConnection() {

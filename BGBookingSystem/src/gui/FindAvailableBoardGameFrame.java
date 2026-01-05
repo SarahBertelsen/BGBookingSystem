@@ -47,6 +47,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 
@@ -88,7 +89,8 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 					BoardGameCopyCtrl bgCopyCtrl = new BoardGameCopyCtrl(bookingDb, bgCopyDb);
 					BookingCtrl bookingCtrl = new BookingCtrl(new BookingDB(bgCopyDb, tableDb, cusDb, memDb), cusDb,
 							tableDb, memDb);
-					bookingCtrl.createBooking(LocalDateTime.now().plusHours(12), 4);
+					LocalDateTime testTime = LocalDate.now().plusDays(1).atTime(18,00);
+                    bookingCtrl.createBooking(testTime, 4);
 					FindAvailableBoardGameFrame frame = new FindAvailableBoardGameFrame(bookingCtrl, bgCopyCtrl, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
