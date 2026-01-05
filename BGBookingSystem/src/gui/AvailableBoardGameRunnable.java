@@ -49,7 +49,7 @@ public class AvailableBoardGameRunnable implements Runnable {
 		synchronized(lock) {
 			while(!hasSameCopies(buffer, newCopies)){
 				buffer = newCopies;
-				lock.notifyAll();
+				notifyAll();
 			}
 		}
 	}
@@ -66,6 +66,7 @@ public class AvailableBoardGameRunnable implements Runnable {
 			}
 			List<BoardGameCopy> result = buffer;
 			buffer = null; //Empty the buffer
+			notifyAll();
 			return result;
 		}
 	}
