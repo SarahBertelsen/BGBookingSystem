@@ -49,7 +49,7 @@ public class AvailableBoardGameRunnable implements Runnable {
 			
 		//Update buffer and wake consumer if data has changed
 		synchronized(lock) {
-			if(buffer == null || !hasSameCopies(buffer, newCopies)){
+			while(!hasSameCopies(buffer, newCopies)){
 				buffer = newCopies;
 				lock.notifyAll();
 			}
