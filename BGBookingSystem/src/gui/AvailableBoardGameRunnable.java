@@ -43,8 +43,6 @@ public class AvailableBoardGameRunnable implements Runnable {
 	 * updated.
 	 */
 	private void produce() {
-		if(!frame.isVisible()) return;
-		
 		List<BoardGameCopy> newCopies = frame.findBoardGameCopies();
 			
 		//Update buffer and wake consumer if data has changed
