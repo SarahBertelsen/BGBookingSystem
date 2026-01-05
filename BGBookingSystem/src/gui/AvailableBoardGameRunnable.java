@@ -42,7 +42,7 @@ public class AvailableBoardGameRunnable implements Runnable {
 	 * of board games to the current list. We use a lock object when the buffer is
 	 * updated.
 	 */
-	private void produce() {
+	public synchronized void produce() {
 		List<BoardGameCopy> newCopies = frame.findBoardGameCopies();
 			
 		//Update buffer and wake consumer if data has changed
@@ -59,10 +59,10 @@ public class AvailableBoardGameRunnable implements Runnable {
 	 * @return List<BoardGameCopy> the updated list of board game copies.
 	 * @throws InterruptedException
 	 */
-	public List<BoardGameCopy> consume() throws InterruptedException {
+	public synchronized List<BoardGameCopy> consume() throws InterruptedException {
 		synchronized (lock) {
 			while (buffer == null) {
-				lock.wait(); //Wait until producer has updated the buffer
+				wait(); //Wait until producer has updated the buffer
 			}
 			List<BoardGameCopy> result = buffer;
 			buffer = null; //Empty the buffer
