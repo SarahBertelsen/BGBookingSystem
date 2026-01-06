@@ -30,6 +30,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddCustomerFrame extends JFrame implements FrameIF {
 
@@ -41,6 +43,7 @@ public class AddCustomerFrame extends JFrame implements FrameIF {
 	private BookingCtrl bookingCtrl;
 	private MainFrame mainFrame;
 	private JLabel infoLbl;
+	private JButton Tilbage;
 
 	/**
 	 * Launch the application.
@@ -81,6 +84,18 @@ public class AddCustomerFrame extends JFrame implements FrameIF {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		Tilbage = new JButton("Tilbage");
+		Tilbage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.back();
+			}
+		});
+		GridBagConstraints gbc_tilbage = new GridBagConstraints();
+		gbc_tilbage.insets = new Insets(0, 0, 5, 5);
+		gbc_tilbage.gridx = 0;
+		gbc_tilbage.gridy = 0;
+		contentPane.add(Tilbage, gbc_tilbage);
 		
 		infoLbl = new JLabel("Indtast dine informationer");
 		infoLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
