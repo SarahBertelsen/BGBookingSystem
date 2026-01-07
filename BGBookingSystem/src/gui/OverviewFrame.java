@@ -54,6 +54,7 @@ public class OverviewFrame extends JFrame implements FrameIF {
 	private CustomerDAO customerDAO;
 	private MembershipDAO membershipDAO;
 	private MainFrame mainFrame;
+	private JButton tilbageButton;
 
 	/**
 	 * Launch the application.
@@ -157,6 +158,18 @@ public class OverviewFrame extends JFrame implements FrameIF {
 		gbc_lblNoOfGuests.gridx = 0;
 		gbc_lblNoOfGuests.gridy = 5;
 		panel.add(lblNoOfGuests, gbc_lblNoOfGuests);
+		
+		tilbageButton = new JButton("Tilbage");
+		tilbageButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.back();
+			}
+		});
+		tilbageButton.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_tilbageButton = new GridBagConstraints();
+		gbc_tilbageButton.gridx = 0;
+		gbc_tilbageButton.gridy = 8;
+		panel.add(tilbageButton, gbc_tilbageButton);
 		
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.SOUTH);

@@ -71,7 +71,8 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 	private List<BoardGameCopy> bgCopies;
 	private List<BoardGameCopy> reservedCopies;
 	private JTable reservedCopiesTable;
-
+	
+	private AvailableBoardGameRunnable runnable;
 	private Thread thread;
 
 	/**
@@ -113,7 +114,8 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 		this.reservedCopies = new ArrayList<>();
 		this.bgtm = new BoardGameTableModel(games);
 		this.gbtm = new GameBasketTableModel(reservedCopies);
-		this.thread = new Thread(new AvailableBoardGameRunnable(this));
+		this.runnable = new AvailableBoardGameRunnable(this);
+		this.thread = new Thread(runnable);
 		thread.start();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -268,6 +270,19 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel_3.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
+		
+		JButton tilbageButton = new JButton("Tilbage");
+		tilbageButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.back();
+			}
+		});
+		tilbageButton.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_tilbageButton = new GridBagConstraints();
+		gbc_tilbageButton.insets = new Insets(0, 0, 0, 5);
+		gbc_tilbageButton.gridx = 0;
+		gbc_tilbageButton.gridy = 0;
+		panel_3.add(tilbageButton, gbc_tilbageButton);
 
 		JButton btnNewButton = new JButton("Vis beskrivelse af spil");
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -301,8 +316,6 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 		continueBtn.addActionListener(e -> continueClicked());
 		continueBtn.setFont(new Font("Tahoma", Font.BOLD, 10));
 		panel_4.add(continueBtn);
-
-		searchClicked();
 	}
 	
 	/**
@@ -551,13 +564,14 @@ public class FindAvailableBoardGameFrame extends JFrame implements FrameIF {
 	@Override
 	public void enter() {
 		setVisible(true);
-		
+		updateGameList();
+		runnable.resume();
 	}
 
 	@Override
 	public void exit() {
 		setVisible(false);
-		
+		runnable.pause();
 	}
 
 	@Override

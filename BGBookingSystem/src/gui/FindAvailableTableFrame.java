@@ -32,6 +32,9 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FindAvailableTableFrame extends JFrame implements FrameIF {
 
@@ -88,17 +91,31 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0 };
-		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
+		
+		JButton tilbageButton = new JButton("Tilbage");
+		tilbageButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.back();
+			}
+		});
+		tilbageButton.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_tilbageButton = new GridBagConstraints();
+		gbc_tilbageButton.anchor = GridBagConstraints.WEST;
+		gbc_tilbageButton.insets = new Insets(0, 0, 5, 0);
+		gbc_tilbageButton.gridx = 1;
+		gbc_tilbageButton.gridy = 0;
+		contentPane.add(tilbageButton, gbc_tilbageButton);
 
 		JLabel lblBookingInfo = new JLabel("BookingInfo");
 		GridBagConstraints gbc_lblBookingInfo = new GridBagConstraints();
 		gbc_lblBookingInfo.insets = new Insets(0, 0, 5, 0);
 		gbc_lblBookingInfo.gridx = 1;
-		gbc_lblBookingInfo.gridy = 0;
+		gbc_lblBookingInfo.gridy = 1;
 		contentPane.add(lblBookingInfo, gbc_lblBookingInfo);
 
 		JLabel lblDato = new JLabel("Indtast Dato");
@@ -106,7 +123,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_lblDato.anchor = GridBagConstraints.WEST;
 		gbc_lblDato.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDato.gridx = 1;
-		gbc_lblDato.gridy = 1;
+		gbc_lblDato.gridy = 2;
 		contentPane.add(lblDato, gbc_lblDato);
 
 		indtastDatoTxt = new JTextField();
@@ -114,7 +131,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_indtastDatoTxt.insets = new Insets(0, 0, 5, 0);
 		gbc_indtastDatoTxt.anchor = GridBagConstraints.WEST;
 		gbc_indtastDatoTxt.gridx = 1;
-		gbc_indtastDatoTxt.gridy = 2;
+		gbc_indtastDatoTxt.gridy = 3;
 		contentPane.add(indtastDatoTxt, gbc_indtastDatoTxt);
 		indtastDatoTxt.setColumns(10);
 
@@ -123,7 +140,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_lblStarttidspunkt.anchor = GridBagConstraints.WEST;
 		gbc_lblStarttidspunkt.insets = new Insets(0, 0, 5, 0);
 		gbc_lblStarttidspunkt.gridx = 1;
-		gbc_lblStarttidspunkt.gridy = 4;
+		gbc_lblStarttidspunkt.gridy = 5;
 		contentPane.add(lblStarttidspunkt, gbc_lblStarttidspunkt);
 
 		indtastStarttidspunkt = new JTextField();
@@ -131,7 +148,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_indtastStarttidspunkt.insets = new Insets(0, 0, 5, 0);
 		gbc_indtastStarttidspunkt.anchor = GridBagConstraints.WEST;
 		gbc_indtastStarttidspunkt.gridx = 1;
-		gbc_indtastStarttidspunkt.gridy = 5;
+		gbc_indtastStarttidspunkt.gridy = 6;
 		contentPane.add(indtastStarttidspunkt, gbc_indtastStarttidspunkt);
 		indtastStarttidspunkt.setColumns(10);
 
@@ -140,7 +157,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_lblDeltager.anchor = GridBagConstraints.WEST;
 		gbc_lblDeltager.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDeltager.gridx = 1;
-		gbc_lblDeltager.gridy = 7;
+		gbc_lblDeltager.gridy = 8;
 		contentPane.add(lblDeltager, gbc_lblDeltager);
 
 		indtastDeltagere = new JTextField();
@@ -148,7 +165,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_indtastDeltagere.insets = new Insets(0, 0, 5, 0);
 		gbc_indtastDeltagere.anchor = GridBagConstraints.WEST;
 		gbc_indtastDeltagere.gridx = 1;
-		gbc_indtastDeltagere.gridy = 8;
+		gbc_indtastDeltagere.gridy = 9;
 		contentPane.add(indtastDeltagere, gbc_indtastDeltagere);
 		indtastDeltagere.setColumns(10);
 
@@ -157,7 +174,7 @@ public class FindAvailableTableFrame extends JFrame implements FrameIF {
 		gbc_btnBookBord.insets = new Insets(0, 0, 5, 0);
 		gbc_btnBookBord.anchor = GridBagConstraints.WEST;
 		gbc_btnBookBord.gridx = 1;
-		gbc_btnBookBord.gridy = 12;
+		gbc_btnBookBord.gridy = 13;
 		contentPane.add(btnBookBord, gbc_btnBookBord);
 
 		btnBookBord.addActionListener(e -> createBooking());

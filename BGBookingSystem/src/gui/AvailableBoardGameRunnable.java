@@ -13,6 +13,9 @@ public class AvailableBoardGameRunnable implements Runnable {
 	FindAvailableBoardGameFrame frame;
 	private List<BoardGameCopy> buffer = null;
 	private final Object lock = new Object();
+	
+	private boolean running = true;
+	private boolean paused = true;
 
 	public AvailableBoardGameRunnable(FindAvailableBoardGameFrame frame) {
 		this.frame = frame;
@@ -35,7 +38,32 @@ public class AvailableBoardGameRunnable implements Runnable {
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 			}
+		
+//		this is my (Lau) suggestion for tweaking the runnable so it supports being paused
+//		while(running) {
+//			synchronized(lock) {
+//				while(paused) {
+//					lock.wait();
+//				}
+//			}
+//			tryBoardGameUpdateOldVersion();
+//			Thread.sleep(2000);
+//		}
+		
 		}
+	
+	public void pause() {
+		synchronized(lock) {
+			paused = true;
+		}
+	}
+	
+	public void resume() {
+		synchronized (lock) {
+			paused = false;
+			lock.notifyAll();
+		}
+	}
 	
 	/**
 	 * Producer method. Collects new data from the database, compares the new list

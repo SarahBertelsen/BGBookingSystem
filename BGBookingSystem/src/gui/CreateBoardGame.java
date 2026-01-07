@@ -43,6 +43,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateBoardGame extends JFrame implements FrameIF {
 
@@ -241,6 +243,18 @@ public class CreateBoardGame extends JFrame implements FrameIF {
 		gbc_btnCreateCopies.gridx = 10;
 		gbc_btnCreateCopies.gridy = 0;
 		panel_2.add(btnCreateCopies, gbc_btnCreateCopies);
+		
+		JPanel northPanel = new JPanel();
+		contentPane.add(northPanel, BorderLayout.NORTH);
+		northPanel.setLayout(new BorderLayout(0, 0));
+		
+		JButton tilbageButton = new JButton("Tilbage");
+		tilbageButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.back();
+			}
+		});
+		northPanel.add(tilbageButton, BorderLayout.WEST);
 		
 		btnCreateCopies.addActionListener(e -> noOfCopiesClicked());
 		
