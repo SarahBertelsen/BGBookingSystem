@@ -40,44 +40,46 @@ public class TableCtrl implements TableCtrlIF {
 		return table;
 	}
 
-	public Table findAvailableTable(LocalDateTime date, int noOfGuests) {
-		List<Booking> bookings = bookingDao.getAllBookings();
-		List<Table> tables = tableDao.getAllTables();
-		tables = tables.stream().filter(t -> t.getNoOfSeats() >= noOfGuests).collect(Collectors.toList());
-
-		Iterator<Table> it = tables.iterator();
-		while (it.hasNext()) {
-			Table table = it.next();
-			if (isTableReserved(table, bookings, date)) {
-				it.remove();
-			}
-		}
-
-		return tables.stream().min(Comparator.comparingInt(t -> t.getNoOfSeats())).orElse(null);
-		;
-	}
-
-	private boolean isTableReserved(Table table, List<Booking> bookings, LocalDateTime startDate) {
-		boolean success = false;
-		int i = 0;
-
-		while (!success && i < bookings.size()) {
-			Booking booking = bookings.get(i);
-			Table bookingTable = booking.getTable();
-			if (bookingTable.getTableNo() == table.getTableNo()) {
-				LocalDateTime bookingStartDate = booking.getDate();
-				LocalDateTime bookingEndDate = bookingStartDate.plusHours(3);
-
-				LocalDateTime endDate = startDate.plusHours(3);
-
-				if (!(startDate.isAfter(bookingEndDate) && endDate.isBefore(bookingStartDate)))
-					;
-				success = true;
-			}
-
-			i++;
-		}
-		return success;
-	}
+//	theoretical alternative to table sorting done outside of sql.
+//	
+//	public Table findAvailableTable(LocalDateTime date, int noOfGuests) {
+//		List<Booking> bookings = bookingDao.getAllBookings();
+//		List<Table> tables = tableDao.getAllTables();
+//		tables = tables.stream().filter(t -> t.getNoOfSeats() >= noOfGuests).collect(Collectors.toList());
+//
+//		Iterator<Table> it = tables.iterator();
+//		while (it.hasNext()) {
+//			Table table = it.next();
+//			if (isTableReserved(table, bookings, date)) {
+//				it.remove();
+//			}
+//		}
+//
+//		return tables.stream().min(Comparator.comparingInt(t -> t.getNoOfSeats())).orElse(null);
+//		;
+//	}
+//
+//	private boolean isTableReserved(Table table, List<Booking> bookings, LocalDateTime startDate) {
+//		boolean success = false;
+//		int i = 0;
+//
+//		while (!success && i < bookings.size()) {
+//			Booking booking = bookings.get(i);
+//			Table bookingTable = booking.getTable();
+//			if (bookingTable.getTableNo() == table.getTableNo()) {
+//				LocalDateTime bookingStartDate = booking.getDate();
+//				LocalDateTime bookingEndDate = bookingStartDate.plusHours(3);
+//
+//				LocalDateTime endDate = startDate.plusHours(3);
+//
+//				if (!(startDate.isAfter(bookingEndDate) && endDate.isBefore(bookingStartDate)))
+//					;
+//				success = true;
+//			}
+//
+//			i++;
+//		}
+//		return success;
+//	}
 
 }
